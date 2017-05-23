@@ -1,5 +1,6 @@
 package teammates.storage.entity;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -52,8 +53,8 @@ public class AdminEmail extends BaseEntity {
     public AdminEmail(List<String> addressReceiver, List<String> groupReceiver, String subject,
                       Text content, Date sendDate) {
         this.emailId = null;
-        this.addressReceiver = addressReceiver;
-        this.groupReceiver = groupReceiver;
+        this.addressReceiver = addressReceiver == null ? new ArrayList<String>() : addressReceiver;
+        this.groupReceiver = groupReceiver == null ? new ArrayList<String>() : groupReceiver;
         this.subject = subject;
         this.content = content;
         this.sendDate = sendDate;

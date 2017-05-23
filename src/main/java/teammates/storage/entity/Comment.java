@@ -1,6 +1,8 @@
 package teammates.storage.entity;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -87,12 +89,13 @@ public class Comment extends BaseEntity {
         this.courseId = courseId;
         this.giverEmail = giverEmail;
         this.recipientType = recipientType;
-        this.recipients = recipients;
+        this.recipients = recipients == null ? new HashSet<String>() : recipients;
         this.status = status;
         this.sendingState = sendingState;
-        this.showCommentTo = showCommentTo;
-        this.showGiverNameTo = showGiverNameTo;
-        this.showRecipientNameTo = showRecipientNameTo;
+        this.showCommentTo = showCommentTo == null ? new ArrayList<CommentParticipantType>() : showCommentTo;
+        this.showGiverNameTo = showGiverNameTo == null ? new ArrayList<CommentParticipantType>() : showGiverNameTo;
+        this.showRecipientNameTo =
+                showRecipientNameTo == null ? new ArrayList<CommentParticipantType>() : showRecipientNameTo;
         this.createdAt = date;
         this.commentText = SanitizationHelper.sanitizeForRichText(comment);
         this.lastEditorEmail = lastEditorEmail == null ? giverEmail : lastEditorEmail;
